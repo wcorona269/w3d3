@@ -52,6 +52,67 @@ end
 
 
 
+# Using recursion and the is_a? method, write an Array#deep_dup method that will perform a "deep" duplication of the interior arrays.
+
+# Note: For simplicity's sake, we are only going to ensure the deep duplication of arrays. 
+# Don't worry about deep-duping (or regular-duping) other types of mutable objects (like strings, hashes, instances of custom classes, etc.),
+#  since this would require that we implement a deep dup method for each of those classes, as well.
+
+require "byebug"
+
+def deep_dup(arr)
+  if arr.length == 1
+    return arr
+  end
+
+  new_array = []
+
+  arr.each do |ele|
+    if !ele.is_a?(Array)
+      new_array << ele
+    else
+      new_array += ele
+    end
+  end
+
+  deep_dup(new_array)  
+end
+
+
+  # if arr.length == 1
+  #   return arr
+  # end
+  
+  # arr.each do |sub_arr|
+  #   deep_dup(sub_arr) + arr[1..-1]
+  # end
+
+
+
+
+robot_parts = [
+  ["nuts", "bolts", "washers"],
+  ["capacitors", "resistors", "inductors"]
+]
+
+p deep_dup(robot_parts)
+
+
+
+# robot_parts_copy = robot_parts.dup
+
+# # shouldn't modify robot_parts
+# robot_parts_copy[1] << "LEDs"
+# # but it does
+# robot_parts[1] # => ["capacitors", "resistors", "inductors", "LEDs"]
+
+
+
+
+
+
+
+
 
 
 
