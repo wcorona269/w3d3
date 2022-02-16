@@ -58,25 +58,23 @@ end
 # Don't worry about deep-duping (or regular-duping) other types of mutable objects (like strings, hashes, instances of custom classes, etc.),
 #  since this would require that we implement a deep dup method for each of those classes, as well.
 
-require "byebug"
+#def deep_dup(arr)
+  #if arr.empty?
+  #  return []
+ # end
 
-def deep_dup(arr)
-  if arr.length == 1
-    return arr
-  end
+  #new_array = []
 
-  new_array = []
+ # arr.each do |ele|
+   # if !ele.is_a?(Array)
+    #  new_array << ele
+   # else
+  #    new_array << deep_dup(ele) # << this runs in a bubble
+ #   end
+ # end
 
-  arr.each do |ele|
-    if !ele.is_a?(Array)
-      new_array << ele
-    else
-      new_array += ele
-    end
-  end
-
-  deep_dup(new_array)  
-end
+ # new_array
+# end
 
 
   # if arr.length == 1
@@ -90,30 +88,45 @@ end
 
 
 
-robot_parts = [
-  ["nuts", "bolts", "washers"],
-  ["capacitors", "resistors", "inductors"]
-]
+## robot_parts = [
+##   ["nuts", "bolts", "washers"],
+##   ["capacitors", "resistors", "inductors"]
+## ]
 
-p deep_dup(robot_parts)
+## arr1 = [1, 3, [2]]
 
-
-
-# robot_parts_copy = robot_parts.dup
-
-# # shouldn't modify robot_parts
-# robot_parts_copy[1] << "LEDs"
-# # but it does
-# robot_parts[1] # => ["capacitors", "resistors", "inductors", "LEDs"]
+## p deep_dup(arr1)
 
 
 
+def iter_fibonacci(n)
+  fibo_seq = []
+  i = 0
+  a = 1
+  b = 1
+  while i < n
+    if a < b
+      fibo_seq << a
+      a += b
+      i += 1 # a = a + b
+    else
+      fibo_seq << b
+      b += a
+      i += 1
+    end
+  end
+
+  return fibo_seq
+end
+
+
+# p iter_fibonacci(7)
 
 
 
+def rec_fib(n) #n == 3
+  return 1 if n == 0
+  
+end
 
-
-
-
-
-
+p rec_fib(3)
